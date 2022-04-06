@@ -40,3 +40,5 @@ let NERDTreeIgnore=['\.pyc$']
 
 "设置Python3路径"
 let g:python3_host_prog = 'D:/Python39/python3'
+
+noremap <silent> <C-S>          :update<CR>

@@ -8,9 +8,11 @@ return require('packer').startup(function()
     -- https://zhuanlan.zhihu.com/p/439574087
     -- https://zhuanlan.zhihu.com/p/438382701
 
-    use {
-        'preservim/nerdtree'
-    }
+    use { 'preservim/nerdtree' }
+
+
+    use { 'Valloric/YouCompleteMe' }
+
 
     -- use {
     --     'kyazdani42/nvim-tree.lua',
