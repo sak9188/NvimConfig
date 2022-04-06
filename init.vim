@@ -10,6 +10,8 @@ set showtabline=0
 
 "设置字体"
 set guifont=Consolas:h13
+set guifontwide=Microsoft_YaHei:h13
+hi Normal ctermfg=252 ctermbg=none
 
 "开启语法高亮"
 syntax on
@@ -33,5 +35,8 @@ set cursorcolumn
 "设置历史条数"
 set history=1024
 
+"NERDTree 过滤"
+let NERDTreeIgnore=['\.pyc$']
 
-
+"设置Python3路径"
+let g:python3_host_prog = 'D:/Python39/python3'
