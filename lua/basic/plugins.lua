@@ -13,13 +13,7 @@ packer.startup(
             -- https://zhuanlan.zhihu.com/p/439574087
             -- https://zhuanlan.zhihu.com/p/438382701
 
-            use { 'preservim/nerdtree',
-                config = function ()
-                    vim.cmd([[
-                        let NERDTreeIgnore=['*.pyc']
-                    ]])
-                end
-            }
+            use { 'preservim/nerdtree' }
 
             -- 中文文档
             use {
@@ -46,7 +40,10 @@ packer.startup(
                 end
             }
 
-            use {'dracula/vim', as = 'dracula'}
+            -- 主题设置
+            use {
+                'dracula/vim', as = 'dracula'
+            }
 
         end,
         -- 使用浮动窗口
@@ -61,11 +58,11 @@ packer.startup(
 -- 实时生效配置
 vim.cmd(
     [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
-
-  colorscheme dracula
+    augroup packer_user_config
+        autocmd!
+        autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+    augroup end
+    colorscheme dracula
+    hi Normal guibg=NONE ctermbg=NONE
 ]]
 )

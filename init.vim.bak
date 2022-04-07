@@ -36,7 +36,7 @@ set cursorcolumn
 set history=1024
 
 "NERDTree 过滤"
-let NERDTreeIgnore=['\.pyc$']
+let NERDTreeIgnore=['\sdASD.pyc$']
 
 "设置Python3路径"
 let g:python3_host_prog = 'D:/Python39/python3'
