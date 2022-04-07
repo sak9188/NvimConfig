@@ -275,6 +275,22 @@ packer.startup(
                     require("conf.nvim-cmp")
                 end
             }
+
+            -- view tree
+            use {
+                "liuchengxu/vista.vim",
+                config = function()
+                    require("conf.vista")
+                end
+            }
+
+            -- 代码格式化
+            use {
+                "sbdchd/neoformat",
+                config = function()
+                    require("conf.neoformat")
+                end
+            }
         end,
         -- 使用浮动窗口
         config = {
