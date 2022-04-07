@@ -183,6 +183,98 @@ packer.startup(
                     vim.keybinds.gmap("n", "<leader>fm", "<cmd>Telescope marks theme=dropdown<CR>", vim.keybinds.opts)
                 end
             }
+
+            -- 精美弹窗
+            use {
+                "rcarriga/nvim-notify",
+                config = function()
+                    require("conf.nvim-notify")
+                end
+            }
+
+            -- LSP 基础服务
+            use {
+                "neovim/nvim-lspconfig",
+                config = function()
+                    require("conf.nvim-lspconfig")
+                end
+            }
+                                                    
+            -- 自动安装 LSP
+            use {
+                "williamboman/nvim-lsp-installer",
+                config = function()
+                    require("conf.nvim-lsp-installer")
+                end
+            }                                          
+
+            -- -- LSP UI 美化
+            use {
+                "tami5/lspsaga.nvim",
+                config = function()
+                    require("conf.lspsaga")
+                end
+            }
+
+            -- LSP 进度提示
+            use {
+                "j-hui/fidget.nvim",
+                config = function()
+                    require("fidget").setup({
+                        window = {
+                            -- 窗口全透明，不建议修改这个选项
+                            -- 否则主题透明时将会出现一大片黑块
+                            blend = 0,
+                        }
+                    })
+                end
+            }
+
+            -- 插入模式获得函数签名
+            use {
+                "ray-x/lsp_signature.nvim",
+                config = function()
+                    require("lsp_signature").setup(
+                        {
+                            bind = true,
+                            -- 边框样式
+                            handler_opts = {
+                                -- double、rounded、single、shadow、none
+                                border = "rounded"
+                            },
+                            -- 自动触发
+                            floating_window = false,
+                            -- 绑定按键
+                            toggle_key = "<C-j>",
+                            -- 虚拟提示关闭
+                            hint_enable = false,
+                            -- 正在输入的参数将如何突出显示
+                            hi_parameter = "LspSignatureActiveParameter"
+                        }
+                    )
+                end
+            }
+
+            -- 自动代码补全系列插件
+            use {
+                "hrsh7th/nvim-cmp",  -- 代码补全核心插件，下面都是增强补全的体验插件
+                requires = {
+                    {"onsails/lspkind-nvim"}, -- 为补全添加类似 vscode 的图标
+                    {"hrsh7th/vim-vsnip"}, -- vsnip 引擎，用于获得代码片段支持
+                    {"hrsh7th/cmp-vsnip"}, -- 适用于 vsnip 的代码片段源
+                    {"hrsh7th/cmp-nvim-lsp"}, -- 替换内置 omnifunc，获得更多补全
+                    {"hrsh7th/cmp-path"}, -- 路径补全
+                    {"hrsh7th/cmp-buffer"}, -- 缓冲区补全
+                    {"hrsh7th/cmp-cmdline"}, -- 命令补全
+                    {"f3fora/cmp-spell"}, -- 拼写建议
+                    {"rafamadriz/friendly-snippets"}, -- 提供多种语言的代码片段
+                    {"lukas-reineke/cmp-under-comparator"}, -- 让补全结果的排序更加智能
+                    {"tzachar/cmp-tabnine", run = "install.ps1"} -- tabnine 源,提供基于 AI 的智能补全
+                },
+                config = function()
+                    require("conf.nvim-cmp")
+                end
+            }
         end,
         -- 使用浮动窗口
         config = {
@@ -201,6 +293,6 @@ vim.cmd(
         autocmd BufWritePost plugins.lua source <afile> | PackerCompile
     augroup end
     colorscheme dracula
-    hi Normal guibg=NONE ctermbg=NONE
+    " hi Normal guibg=NONE ctermbg=NONE
 ]]
 )
