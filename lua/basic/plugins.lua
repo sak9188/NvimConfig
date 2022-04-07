@@ -291,6 +291,13 @@ packer.startup(
                     require("conf.neoformat")
                 end
             }
+
+            -- 更好的寄存器
+            use {
+                "tversteeg/registers.nvim",
+                config = function()
+                end
+            }
         end,
         -- 使用浮动窗口
         config = {
