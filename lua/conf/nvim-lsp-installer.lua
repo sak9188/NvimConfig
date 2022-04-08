@@ -94,7 +94,7 @@ for server_name, server_options in pairs(servers) do
                 server_options.on_attach = attach
                 -- options config
                 server_options.flags = {
-                    debounce_text_changes = 5000
+                    debounce_text_changes = 150
                 }
                 server_options.capabilities = capabilities
                 -- 启动服务

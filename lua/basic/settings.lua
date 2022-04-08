@@ -73,4 +73,4 @@ vim.g.undotree_dir = "~/nvim/undodir"
 vim.g.NERDTreeIgnore = {'\\.pyc$', }
 
 -- VCS 更新时间
-vim.g.updatetime = 500
+vim.g.updatetime = 1000
