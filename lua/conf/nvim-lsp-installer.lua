@@ -96,7 +96,7 @@ for server_name, server_options in pairs(servers) do
         -- 如果服务器没有下载，则通过 notify 插件弹出下载提示
         if not server:is_installed() then
            vim.notify("Install Language Server : " .. server_name, "WARN", {title = "Language Servers"})
-           -- server:install()
+           server:install()
         end
     end
 end

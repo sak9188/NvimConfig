@@ -13,7 +13,11 @@ packer.startup(
             -- https://zhuanlan.zhihu.com/p/439574087
             -- https://zhuanlan.zhihu.com/p/438382701
 
-            use { 'preservim/nerdtree' }
+            use { 'preservim/nerdtree',
+                config = function ()
+                    vim.keybinds.gmap("n", "<leader>1", "<Cmd>NERDTree<CR>", vim.keybinds.opts)
+                end
+            }
 
             -- 中文文档
             use {
@@ -296,6 +300,68 @@ packer.startup(
             use {
                 "tversteeg/registers.nvim",
                 config = function()
+                end
+            }
+
+            -- todo tree
+            use {
+                "folke/todo-comments.nvim",
+                config = function()
+                    require("todo-comments").setup(
+                        {
+                            keywords = {
+                                -- alt ： 别名
+                                FIX = {
+                                    icon = " ",
+                                    color = "#DC2626",
+                                    alt = {"FIXME", "BUG", "FIXIT", "ISSUE", "!"}
+                                },
+                                TODO = {icon = " ", color = "#10B981"},
+                                HACK = {icon = " ", color = "#7C3AED"},
+                                WARN = {icon = " ", color = "#FBBF24", alt = {"WARNING", "XXX"}},
+                                PERF = {icon = " ", color = "#FC9868", alt = {"OPTIM", "PERFORMANCE", "OPTIMIZE"}},
+                                NOTE = {icon = " ", color = "#2563EB", alt = {"INFO"}}
+                            }
+                        }
+                    )
+
+                    -- 查找 TODO 标签
+                    vim.keybinds.gmap("n", "<leader>ft", "<cmd>TodoTelescope theme=dropdown<CR>", vim.keybinds.opts)
+                end
+            }
+
+            -- undo tree
+            use {
+                "mbbill/undotree",
+                config = function()
+                    -- https://github.com/mbbill/undotree
+                    vim.cmd(
+                        [[
+                    if has("persistent_undo")
+                        " 在 config.lua 中定义好了 undotree_dir 全局变量
+                        let target_path = expand(undotree_dir)
+                        if !isdirectory(target_path)
+                            call mkdir(target_path, "p", 0700)
+                        endif
+                        let &undodir = target_path
+                        set undofile
+                    ]]
+                    )
+
+                    -- 按键绑定，查看 undotree
+                    vim.keybinds.gmap("n", "<leader>3", ":UndotreeToggle<CR>", vim.keybinds.opts)
+                end
+            }
+
+            -- 语法高亮
+            use {
+                "nvim-treesitter/nvim-treesitter",
+                run = {":TSupdate"},
+                requires = {
+                    "p00f/nvim-ts-rainbow" -- 彩虹括号
+                },
+                config = function()
+                    require("conf.nvim-treesitter")
                 end
             }
         end,

@@ -66,5 +66,8 @@ vim.o.showtabline=1
 -- 设置python3路径
 vim.g.python3_host_prog = 'D:/Python39/python3'
 
+-- 指定 undotree 缓存存放路径
+vim.g.undotree_dir = "~/nvim/undodir"
+
 -- NERDTree忽略
 vim.g.NERDTreeIgnore = {'\\.pyc$', }
