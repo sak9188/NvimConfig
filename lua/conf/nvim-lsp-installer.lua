@@ -22,6 +22,14 @@ local servers = {
 
 -- 这里是 LSP 服务启动后的按键加载
 local function attach(_, bufnr)
+
+    -- 添加工作目录
+    vim.keybinds.bmap(bufnr, 'n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', vim.keybinds.opts)
+    -- 移除工作目录 
+    vim.keybinds.bmap(bufnr, 'n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', vim.keybinds.opts)
+    -- 打印工作目录
+    vim.keybinds.bmap(bufnr, 'n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', vim.keybinds.opts)
+
     -- 跳转到定义（代替内置 LSP 的窗口，telescope 插件让跳转定义更方便）
     vim.keybinds.bmap(bufnr, "n", "gd", "<cmd>Telescope lsp_definitions theme=dropdown<CR>", vim.keybinds.opts)
     -- 列出光标下所有引用（代替内置 LSP 的窗口，telescope 插件让查看引用更方便）
@@ -86,7 +94,7 @@ for server_name, server_options in pairs(servers) do
                 server_options.on_attach = attach
                 -- options config
                 server_options.flags = {
-                    debounce_text_changes = 150
+                    debounce_text_changes = 5000
                 }
                 server_options.capabilities = capabilities
                 -- 启动服务

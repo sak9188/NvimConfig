@@ -6,3 +6,7 @@ vim.bo.shiftwidth = 4
 vim.bo.tabstop = 4    
 -- tab 和 space 的混合，和上面 2 个设置成相同即可    
 vim.bo.softtabstop = 4   
+
+vim.opt.listchars:append("space:⋅")
+vim.opt.listchars:append("eol:↴")
+vim.opt.listchars:append("tab:>-")
