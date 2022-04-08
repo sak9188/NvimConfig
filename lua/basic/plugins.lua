@@ -364,6 +364,9 @@ packer.startup(
                     require("conf.nvim-treesitter")
                 end
             }
+            
+            -- VCS 版本管理系统
+            use { 'mhinz/vim-signify' }
         end,
         -- 使用浮动窗口
         config = {
