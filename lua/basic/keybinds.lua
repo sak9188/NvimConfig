@@ -43,3 +43,6 @@ vim.keybinds.gmap("n", "<C-right>", "<cmd>vertical resize+1<CR>", vim.keybinds.o
 
 -- 设置c-s保存
 vim.keybinds.gmap("n", "<C-S>", ":update<CR>", vim.keybinds.opts)
+
+-- 设置<C-c>退出
+vim.keybinds.gmap("i", "<C-c>", "<Esc>`^", vim.keybinds.opts)
