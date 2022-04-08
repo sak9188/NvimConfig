@@ -15,7 +15,7 @@ packer.startup(
 
             use { 'preservim/nerdtree',
                 config = function ()
-                    vim.keybinds.gmap("n", "<leader>1", "<Cmd>NERDTree<CR>", vim.keybinds.opts)
+                    vim.keybinds.gmap("n", "<leader>1", "<Cmd>NERDTreeToggle<CR>", vim.keybinds.opts)
                 end
             }
 
@@ -382,6 +382,6 @@ vim.cmd(
         autocmd BufWritePost plugins.lua source <afile> | PackerCompile
     augroup end
     colorscheme dracula
-    " hi Normal guibg=NONE ctermbg=NONE
+    hi Normal guibg=NONE ctermbg=NONE
 ]]
 )
