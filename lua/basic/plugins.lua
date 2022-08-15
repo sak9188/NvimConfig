@@ -13,9 +13,23 @@ packer.startup(
             -- https://zhuanlan.zhihu.com/p/439574087
             -- https://zhuanlan.zhihu.com/p/438382701
 
-            use { 'preservim/nerdtree',
+            -- use { 'preservim/nerdtree',
+            --     config = function ()
+            --         vim.keybinds.gmap("n", "<leader>1", "<Cmd>NERDTreeToggle<CR>", vim.keybinds.opts)
+            --     end
+            -- }
+
+            use {
+                "kyazdani42/nvim-tree.lua",
+                requires = {
+                  'kyazdani42/nvim-web-devicons', -- optional, for file icons
+                },
                 config = function ()
-                    vim.keybinds.gmap("n", "<leader>1", "<Cmd>NERDTreeToggle<CR>", vim.keybinds.opts)
+                    require("nvim-tree").setup {
+                        -- updates the root directory of the tree on `DirChanged` (when your run `:cd` usually) 
+                        sync_root_with_cwd  = true
+                    }
+                    vim.keybinds.gmap("n", "<leader>1", "<Cmd>NvimTreeToggle<CR>", vim.keybinds.opts)
                 end
             }
 
@@ -342,7 +356,7 @@ packer.startup(
             -- 语法高亮
             use {
                 "nvim-treesitter/nvim-treesitter",
-                run = {":TSupdate"},
+                run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
                 requires = {
                     "p00f/nvim-ts-rainbow" -- 彩虹括号
                 },
