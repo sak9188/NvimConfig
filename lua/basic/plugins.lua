@@ -132,7 +132,6 @@ packer.startup(
                         -- 保存会话时自动关闭 nvim-tree
                         -- 这是因为 nvim-tree 如果处于开启
                         -- 状态，会破坏会话的保存
-                        pre_save_cmds = {"tabdo NERDTreeClose"}
                     }
                     
                     -- 在每次退出 neovim 时自动保存会话
@@ -261,7 +260,6 @@ packer.startup(
                     {"f3fora/cmp-spell"}, -- 拼写建议
                     {"rafamadriz/friendly-snippets"}, -- 提供多种语言的代码片段
                     {"lukas-reineke/cmp-under-comparator"}, -- 让补全结果的排序更加智能
-                    {"tzachar/cmp-tabnine", run = "install.ps1"} -- tabnine 源,提供基于 AI 的智能补全
                 },
                 config = function()
                     require("conf.nvim-cmp")
